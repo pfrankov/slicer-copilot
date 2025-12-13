@@ -1,0 +1,74 @@
+{
+  "name": "slicer-copilot",
+  "version": "0.1.0",
+  "description": "Slicer Copilot CLI to auto-optimize Bambu Studio .3mf projects using an LLM",
+  "type": "module",
+  "bin": {
+    "slicer-copilot": "bin/slicer-copilot"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfrankov/slicer-copilot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pfrankov/slicer-copilot/issues"
+  },
+  "homepage": "https://github.com/pfrankov/slicer-copilot#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,json,md}\"",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "3mf",
+    "bambu",
+    "cli",
+    "3d-printing",
+    "slicer",
+    "copilot",
+    "bambu-studio",
+    "3d-print"
+  ],
+  "author": "Pavel Frankov <pavel@frankov.ru>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "fast-xml-parser": "^4.5.0",
+    "figures": "^6.1.0",
+    "jszip": "^3.10.1",
+    "openai": "^4.77.4",
+    "ora": "^9.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@vitest/coverage-v8": "^2.1.4",
+    "eslint": "^9.14.0",
+    "eslint-plugin-sonarjs": "^2.0.4",
+    "globals": "^15.12.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "vitest": "^2.1.4"
+  },
+  "lint-staged": {
+    "*.{js,json,md}": "prettier --write"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

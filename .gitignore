@@ -1,0 +1,12 @@
+node_modules
+coverage
+.nyc_output
+dist
+tmp
+.DS_Store
+*.log
+.env
+.env.*
+*.tgz
+*.3mf
+test-unpacked

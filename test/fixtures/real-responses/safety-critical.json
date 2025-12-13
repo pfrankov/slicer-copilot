@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "changes": [
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_line_count",
+      "newValue": 3,
+      "changeType": "absolute",
+      "reason": "Increase from 2 to 3 perimeters to provide a thicker, more impact- and shear-resistant shell for a load-bearing bracket, improving strength around screw holes and mounting regions without drastically increasing print time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_density_percent",
+      "newValue": 30,
+      "changeType": "absolute",
+      "reason": "Raise infill from 15% to 30% so the internal structure meaningfully contributes to strength and stiffness for this safety-critical tool holder, while still being a moderate, conservative increase."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_pattern",
+      "newValue": "gyroid",
+      "changeType": "absolute",
+      "reason": "Switch to gyroid infill to provide more isotropic strength and better load distribution in all directions, which is beneficial for brackets that may see multi-directional forces."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_layers",
+      "newValue": 6,
+      "changeType": "absolute",
+      "reason": "Increase top solid layers from 4 to 6 (1.2 mm at 0.2 mm layer height) to strengthen outer skins and improve resistance to crushing and localized loads on the top surfaces."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "bottom_layers",
+      "newValue": 6,
+      "changeType": "absolute",
+      "reason": "Increase bottom solid layers from 4 to 6 to create a thicker, more rigid base that better handles screw pressure and bending forces at the mounting points."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "fan_speed_percent",
+      "newValue": 40,
+      "changeType": "absolute",
+      "reason": "Reduce PETG part cooling from 70% to 40% to improve interlayer adhesion and overall toughness; high fan speeds can make PETG more brittle, which is undesirable for a safety-critical, load-bearing bracket."
+    }
+  ],
+  "globalRationale": "Thicker perimeters and more solid skin, combined with denser isotropic infill and reduced PETG cooling, will significantly improve the bracket’s structural reliability while keeping the overall changes conservative and easy to print on the existing profile.",
+  "warnings": [
+    "These changes will increase print time and material usage compared to the original profile, but they are appropriate for a safety-critical, overhead-mounted tool holder.",
+    "Mechanical safety cannot be fully guaranteed from slicer settings alone; verify part strength with cautious load testing before placing it above a workspace or near people."
+  ]
+}

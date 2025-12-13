@@ -1,0 +1,1006 @@
+{
+  "functional-strength": {
+    "scenario": {
+      "name": "functional-strength",
+      "description": "Optimize for functional strength with PETG bracket",
+      "intent": {
+        "primary_goal": "functional_strong",
+        "secondary_goals": [],
+        "load_bearing": true,
+        "safety_critical": false,
+        "constraints": {
+          "max_print_time_hours": null,
+          "material_saving_important": false
+        },
+        "locked_parameters": [],
+        "preferred_focus": ["walls", "infill"],
+        "free_text_description": "This is a mounting bracket that will hold a small shelf. Needs to be strong."
+      }
+    },
+    "response": {
+      "version": 1,
+      "changes": [
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wall_line_count",
+          "newValue": 4,
+          "changeType": "absolute",
+          "reason": "Increase shell thickness so the bracket’s outer walls carry more of the bending and shear load, improving overall strength and stiffness."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "infill_density_percent",
+          "newValue": 35,
+          "changeType": "absolute",
+          "reason": "Raise internal infill density so the bracket better resists compression and shear under the shelf load without going to a fully solid print."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "infill_pattern",
+          "newValue": "gyroid",
+          "changeType": "absolute",
+          "reason": "Use a more isotropic infill pattern so the bracket has more uniform strength in multiple directions compared to simple grid."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_layers",
+          "newValue": 5,
+          "changeType": "absolute",
+          "reason": "Add one extra solid top layer to increase the thickness of solid skin where stresses may concentrate, improving durability with modest extra print time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "bottom_layers",
+          "newValue": 5,
+          "changeType": "absolute",
+          "reason": "Increase bottom solid thickness so the layer stack at the mounting/bed-contact side is more resistant to cracking and screw-induced stresses."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.wall_outer",
+          "newValue": 80,
+          "changeType": "absolute",
+          "reason": "Slow outer walls for PETG to improve layer adhesion and reduce the risk of weak, under-bonded perimeters on a load-bearing part."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.wall_inner",
+          "newValue": 120,
+          "changeType": "absolute",
+          "reason": "Moderately reduce inner wall speed to balance stronger inter-layer bonding with reasonable print time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.infill",
+          "newValue": 150,
+          "changeType": "absolute",
+          "reason": "Reduce infill speed slightly so the denser gyroid infill bonds better and carries load more reliably without a large time penalty."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.first_layer",
+          "newValue": 40,
+          "changeType": "absolute",
+          "reason": "Slow the first layer to improve adhesion and create a stronger foundation for the bracket under load."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "fan_speed_percent",
+          "newValue": 40,
+          "changeType": "absolute",
+          "reason": "Lower PETG part cooling to improve inter-layer adhesion and reduce brittleness, prioritizing strength over surface finish."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "nozzle_temp_c",
+          "newValue": 250,
+          "changeType": "absolute",
+          "reason": "Nudge nozzle temperature toward the higher end of the PETG range to promote stronger layer bonding for this functional, load-bearing bracket."
+        }
+      ],
+      "globalRationale": "Increased wall thickness and infill strength, while tuning PETG speeds, cooling, and temperature to favor strong layer adhesion for a load-bearing bracket without making the print excessively slow or material-heavy.",
+      "warnings": [
+        "These settings assume the bracket is oriented so that the main load is not trying to peel apart layer lines; if possible, orient it so layers run along the length of the bracket, not across the main bending stress.",
+        "Lower fan speed and higher PETG temperature can increase stringing and gloss; if surface quality degrades too much, slightly raise fan speed or lower temperature while keeping wall count and infill density unchanged."
+      ]
+    }
+  },
+  "visual-quality": {
+    "scenario": {
+      "name": "visual-quality",
+      "description": "Optimize for visual quality - decorative item",
+      "intent": {
+        "primary_goal": "visual_quality",
+        "secondary_goals": [],
+        "load_bearing": false,
+        "safety_critical": false,
+        "constraints": {
+          "max_print_time_hours": null,
+          "material_saving_important": false
+        },
+        "locked_parameters": [],
+        "preferred_focus": ["top_surface", "walls"],
+        "free_text_description": "Decorative vase that will be visible. Surface quality is most important."
+      }
+    },
+    "response": {
+      "version": 1,
+      "changes": [
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "layer_height_mm",
+          "newValue": 0.16,
+          "changeType": "absolute",
+          "reason": "Slightly finer layers improve visible wall smoothness and curvature detail on a decorative vase without dramatically increasing print time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wall_line_count",
+          "newValue": 3,
+          "changeType": "absolute",
+          "reason": "An extra perimeter helps hide infill artifacts and gives a more uniform, solid-looking outer wall for visual parts."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wall_sequence",
+          "newValue": "outer/inner",
+          "changeType": "absolute",
+          "reason": "Printing the outer wall first prioritizes surface appearance and dimensional accuracy over speed, which suits a decorative vase."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wall_generator",
+          "newValue": "arachne",
+          "changeType": "absolute",
+          "reason": "Arachne-style walls adapt line widths on curves, improving outer wall smoothness on organic vase shapes."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "precise_outer_wall",
+          "newValue": true,
+          "changeType": "absolute",
+          "reason": "Improves dimensional accuracy and consistency of the visible outer wall at the cost of a small speed reduction."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "outer_wall_line_width",
+          "newValue": 0.38,
+          "changeType": "absolute",
+          "reason": "A slightly narrower outer wall line width increases detail and reduces visible extrusion lines on the surface."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_layers",
+          "newValue": 6,
+          "changeType": "absolute",
+          "reason": "More top solid layers reduce the chance of seeing infill pattern or slight waviness on any flat top surfaces."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_surface_pattern",
+          "newValue": "monotonic",
+          "changeType": "absolute",
+          "reason": "Monotonic top infill produces more even, visually consistent top surfaces compared to grid-like patterns."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_solid_infill_flow_ratio",
+          "newValue": 0.97,
+          "changeType": "absolute",
+          "reason": "Slightly under-driving flow on top solids helps prevent ridges and overfilled shiny lines on the visible top surface."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.wall_outer",
+          "newValue": 45,
+          "changeType": "absolute",
+          "reason": "Slowing the outer wall speed significantly improves surface finish and reduces ringing/ghosting on a decorative part."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.wall_inner",
+          "newValue": 90,
+          "changeType": "absolute",
+          "reason": "Inner walls remain faster than outer walls to keep print time reasonable while still reducing vibration compared to the base profile."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_surface_speed",
+          "newValue": 30,
+          "changeType": "absolute",
+          "reason": "Slower top surface speed improves line placement and smoothness on any visible flat areas."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "nozzle_temp_c",
+          "newValue": 240,
+          "changeType": "absolute",
+          "reason": "A small reduction in PETG nozzle temperature can decrease stringing and surface artifacts while remaining within the recommended range."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "ironing_type",
+          "newValue": "topmost surface",
+          "changeType": "absolute",
+          "reason": "Ironing only the very topmost solid layers enhances their visual smoothness without greatly extending total print time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "ironing_speed",
+          "newValue": 25,
+          "changeType": "absolute",
+          "reason": "Moderate ironing speed balances surface quality with the risk of PETG dragging or smearing."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "ironing_flow",
+          "newValue": 10,
+          "changeType": "absolute",
+          "reason": "Low ironing flow helps level out the top surface without creating new ridges or over-extrusion artifacts."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "ironing_spacing",
+          "newValue": 0.1,
+          "changeType": "absolute",
+          "reason": "Tight ironing line spacing gives a more uniform finish on the topmost surface."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "ironing_pattern",
+          "newValue": "monotonic",
+          "changeType": "absolute",
+          "reason": "A monotonic ironing pattern keeps the topmost surface visually consistent and minimizes directional artifacts."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "seam_position",
+          "newValue": "rear",
+          "changeType": "absolute",
+          "reason": "Moving the seam to the rear concentrates any minor zits or blobs on a less-visible side of the vase."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wipe",
+          "newValue": true,
+          "changeType": "absolute",
+          "reason": "Enabling wiping reduces blobs and zits at the seam, improving wall smoothness."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wipe_distance",
+          "newValue": 5,
+          "changeType": "absolute",
+          "reason": "A short wipe distance is typically enough to clean up the nozzle path at layer changes without adding much time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wipe_speed",
+          "newValue": 20,
+          "changeType": "absolute",
+          "reason": "Moderate wipe speed avoids dragging PETG while still being efficient."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "retract_before_wipe",
+          "newValue": true,
+          "changeType": "absolute",
+          "reason": "Retracting before wiping further reduces the chance of blobs forming on the outer surface during travels."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "outer_wall_acceleration",
+          "newValue": 2000,
+          "changeType": "absolute",
+          "reason": "Lower outer wall acceleration reduces vibration and ringing, which directly improves visible wall quality."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "inner_wall_acceleration",
+          "newValue": 4000,
+          "changeType": "absolute",
+          "reason": "Inner walls use a moderate acceleration to balance print time and reduced vibration transfer to the outer walls."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_surface_acceleration",
+          "newValue": 1500,
+          "changeType": "absolute",
+          "reason": "Lower acceleration on top surfaces helps ensure smooth, even top layers without ripples."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "default_acceleration",
+          "newValue": 5000,
+          "changeType": "absolute",
+          "reason": "A moderate default acceleration keeps overall speed reasonable while limiting print head vibration that can affect surface quality."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "outer_wall_jerk",
+          "newValue": 8,
+          "changeType": "absolute",
+          "reason": "Lower jerk on outer walls smooths direction changes and reduces corner artifacts on the visible shell."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "inner_wall_jerk",
+          "newValue": 10,
+          "changeType": "absolute",
+          "reason": "Slightly higher jerk on inner walls maintains throughput without heavily impacting outer surface quality."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_surface_jerk",
+          "newValue": 6,
+          "changeType": "absolute",
+          "reason": "Reduced jerk on top surfaces minimizes small ripples and inconsistencies in the final top layers."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "default_jerk",
+          "newValue": 10,
+          "changeType": "absolute",
+          "reason": "A moderate default jerk setting helps reduce ringing across the print while not slowing it excessively."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "slow_down_layer_time",
+          "newValue": 12,
+          "changeType": "absolute",
+          "reason": "Ensuring very short layers take at least this long helps PETG cool properly, improving detail on small upper sections of the vase."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "slow_down_min_speed",
+          "newValue": 15,
+          "changeType": "absolute",
+          "reason": "Defines a reasonable minimum print speed when slowing down for short layers to avoid overheating and surface roughness."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "fan_cooling_layer_time",
+          "newValue": 20,
+          "changeType": "absolute",
+          "reason": "Targets cooling to keep each layer from printing too quickly, which helps surface quality near the top of the model."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "elefant_foot_compensation",
+          "newValue": 0.04,
+          "changeType": "absolute",
+          "reason": "Compensates slightly for first-layer squish so the base edge of the vase looks sharper and cleaner."
+        }
+      ],
+      "globalRationale": "Adjusted layer height, perimeter strategy, speeds/accelerations, and top-surface settings to prioritize smooth, consistent walls and clean top surfaces on a decorative PETG vase while keeping print times reasonable. Changes focus on reducing vibration, over-extrusion artifacts, and seam defects without compromising basic print reliability.",
+      "warnings": [
+        "Outer wall and top surface speeds are significantly reduced compared to the stock high-speed profile, so expect noticeably longer print times in exchange for better surface quality.",
+        "Enabling ironing and lowering accelerations/jerk will further increase print time but should yield smoother visible surfaces; you can disable ironing if the extra time is not acceptable.",
+        "The slight nozzle temperature reduction to 240 °C should work well for most Bambu PETG, but if you see under-extrusion or poor layer bonding, consider increasing back toward 245 °C."
+      ]
+    }
+  },
+  "draft-fast": {
+    "scenario": {
+      "name": "draft-fast",
+      "description": "Optimize for speed - prototype",
+      "intent": {
+        "primary_goal": "draft_fast",
+        "secondary_goals": [],
+        "load_bearing": false,
+        "safety_critical": false,
+        "constraints": {
+          "max_print_time_hours": 2,
+          "material_saving_important": true
+        },
+        "locked_parameters": [],
+        "preferred_focus": ["speed"],
+        "free_text_description": "Quick prototype to check fit. Quality not important, just need it fast."
+      }
+    },
+    "response": {
+      "version": 1,
+      "changes": [
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "layer_height_mm",
+          "newValue": 0.28,
+          "changeType": "absolute",
+          "reason": "Thicker layers greatly reduce total layer count and print time for a non‑critical fit check, accepting lower surface quality."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "first_layer_height_mm",
+          "newValue": 0.24,
+          "changeType": "absolute",
+          "reason": "Slightly thicker first layer speeds printing while still providing good PETG adhesion on a 0.4 mm nozzle."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_layers",
+          "newValue": 2,
+          "changeType": "absolute",
+          "reason": "Fewer solid top layers save time and material; surface quality and strength are not important for a quick fit prototype."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "bottom_layers",
+          "newValue": 2,
+          "changeType": "absolute",
+          "reason": "Reducing bottom solid layers cuts print time and plastic usage while remaining adequate for a small, non‑load‑bearing bracket."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "infill_density_percent",
+          "newValue": 5,
+          "changeType": "absolute",
+          "reason": "Very low infill is sufficient for a dimensional fit test and significantly reduces material and time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "infill_pattern",
+          "newValue": "lightning",
+          "changeType": "absolute",
+          "reason": "Lightning infill minimizes internal toolpaths and material for the fastest possible low‑strength prototype."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.wall_outer",
+          "newValue": 130,
+          "changeType": "absolute",
+          "reason": "Slightly increasing outer wall speed reduces time with minimal risk to dimensional accuracy on a small PETG part."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.wall_inner",
+          "newValue": 170,
+          "changeType": "absolute",
+          "reason": "Higher inner wall speed increases throughput where surface quality is less critical, shortening total print time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.infill",
+          "newValue": 170,
+          "changeType": "absolute",
+          "reason": "Boosting infill speed exploits low infill density to cut print time without affecting the part’s fit."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "nozzle_temp_c",
+          "newValue": 255,
+          "changeType": "absolute",
+          "reason": "Raising PETG nozzle temperature improves flow and layer bonding at the higher speeds and thicker layers used here."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "fan_speed_percent",
+          "newValue": 80,
+          "changeType": "absolute",
+          "reason": "Strong part cooling helps PETG handle thicker, faster layers and overhangs, supporting reliable high‑speed draft printing."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "filament_max_volumetric_speed",
+          "newValue": 20,
+          "changeType": "absolute",
+          "reason": "Allows the slicer to use higher linear speeds while keeping PETG extrusion within a reasonable volumetric flow limit for the X1C."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "skirt_loops",
+          "newValue": 1,
+          "changeType": "absolute",
+          "reason": "Minimizing skirt loops saves a bit of time and filament while still priming the nozzle."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "skirt_height",
+          "newValue": 1,
+          "changeType": "absolute",
+          "reason": "Limiting the skirt to a single layer reduces unnecessary perimeter printing beyond the first layer."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "reduce_infill_retraction",
+          "newValue": true,
+          "changeType": "absolute",
+          "reason": "Fewer retractions in infill regions shorten print time and stringing there does not affect functionality."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "retraction_minimum_travel",
+          "newValue": 3,
+          "changeType": "absolute",
+          "reason": "A higher minimum travel distance before retracting cuts the number of retractions and speeds up non‑critical draft printing."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "slow_down_layer_time",
+          "newValue": 5,
+          "changeType": "absolute",
+          "reason": "Reducing the minimum layer time threshold avoids unnecessary slowdown on this relatively small part while still giving layers some cooling time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "slow_down_min_speed",
+          "newValue": 30,
+          "changeType": "absolute",
+          "reason": "Prevents the slicer from dropping to very low speeds on quick layers, maintaining the overall high‑speed character of the draft print."
+        }
+      ],
+      "globalRationale": "Increase layer thickness and print speeds while cutting infill and solid layers to minimize time and material for a quick PETG fit-check prototype, accepting lower strength and surface quality. Settings stay within reasonable PETG temperature and flow limits for the X1C to avoid major reliability issues.",
+      "warnings": [
+        "These aggressive settings will produce a weaker, rougher part; do not use this bracket for load‑bearing or safety‑critical applications.",
+        "If you notice under‑extrusion, skipped steps, or severe ringing, lower wall and infill speeds (e.g. back toward 140–150 mm/s) or reduce layer height slightly (e.g. 0.24–0.26 mm)."
+      ]
+    }
+  },
+  "dimensional-accuracy": {
+    "scenario": {
+      "name": "dimensional-accuracy",
+      "description": "Optimize for dimensional accuracy - mechanical part",
+      "intent": {
+        "primary_goal": "dimensionally_accurate",
+        "secondary_goals": ["functional_strong"],
+        "load_bearing": false,
+        "safety_critical": false,
+        "constraints": {
+          "max_print_time_hours": null,
+          "material_saving_important": false
+        },
+        "locked_parameters": ["nozzle_temp_c"],
+        "preferred_focus": ["dimensional"],
+        "free_text_description": "Gear that needs to mesh with existing parts. Tolerance is critical."
+      }
+    },
+    "response": {
+      "version": 1,
+      "changes": [
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "layer_height_mm",
+          "newValue": 0.16,
+          "changeType": "absolute",
+          "reason": "Slightly finer layer height improves tooth profile and small-feature dimensional accuracy with a modest increase in print time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wall_line_count",
+          "newValue": 3,
+          "changeType": "absolute",
+          "reason": "An extra perimeter increases tooth stiffness and dimensional stability without a large material or time penalty, improving functional strength at the gear surface."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wall_sequence",
+          "newValue": "outer/inner",
+          "changeType": "absolute",
+          "reason": "Printing the outer wall first gives more consistent external dimensions, which is important for meshing gear teeth."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "speeds.wall_outer",
+          "newValue": 50,
+          "changeType": "absolute",
+          "reason": "Substantially slowing the outer walls reduces ringing and dimensional overshoot, improving the accuracy of gear teeth and mating surfaces in PETG."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "precise_outer_wall",
+          "newValue": true,
+          "changeType": "absolute",
+          "reason": "Enables extra-precise handling of the outer perimeter for better dimensional fidelity on critical features."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "detect_thin_wall",
+          "newValue": true,
+          "changeType": "absolute",
+          "reason": "Ensures narrow gear teeth and fine features are preserved instead of being skipped or merged, improving functional geometry accuracy."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "infill_density_percent",
+          "newValue": 20,
+          "changeType": "absolute",
+          "reason": "Slightly higher infill increases overall stiffness so teeth deflect less under load, improving practical meshing without a big print-time impact."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "elefant_foot_compensation",
+          "newValue": 0.1,
+          "changeType": "absolute",
+          "reason": "A small first-layer XY compensation reduces the ‘elephant foot’ bulge, keeping the gear’s base dimensions closer to CAD for better fit."
+        }
+      ],
+      "globalRationale": "Tweaks focus on slowing and refining the outer geometry, modestly increasing wall count and stiffness, and compensating the first layer so critical gear dimensions print closer to design while keeping changes conservative.",
+      "warnings": [
+        "For very tight tolerances, you may still need to empirically tune XY compensation (holes and contours) for your specific machine and PETG, which is not adjusted here due to the conservative change requirement.",
+        "Nozzle temperature remains at 245°C per your lock; if you later adjust material flow or dimensional calibration, re-check fit on a small test gear first."
+      ]
+    }
+  },
+  "safety-critical": {
+    "scenario": {
+      "name": "safety-critical",
+      "description": "Safety critical part - tool holder",
+      "intent": {
+        "primary_goal": "functional_strong",
+        "secondary_goals": [],
+        "load_bearing": true,
+        "safety_critical": true,
+        "constraints": {
+          "max_print_time_hours": null,
+          "material_saving_important": false
+        },
+        "locked_parameters": [],
+        "preferred_focus": ["walls", "infill", "layers"],
+        "free_text_description": "Tool holder that will be mounted above workspace. Must not fail."
+      }
+    },
+    "response": {
+      "version": 1,
+      "changes": [
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "wall_line_count",
+          "newValue": 3,
+          "changeType": "absolute",
+          "reason": "Increase from 2 to 3 perimeters to provide a thicker, more impact- and shear-resistant shell for a load-bearing bracket, improving strength around screw holes and mounting regions without drastically increasing print time."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "infill_density_percent",
+          "newValue": 30,
+          "changeType": "absolute",
+          "reason": "Raise infill from 15% to 30% so the internal structure meaningfully contributes to strength and stiffness for this safety-critical tool holder, while still being a moderate, conservative increase."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "infill_pattern",
+          "newValue": "gyroid",
+          "changeType": "absolute",
+          "reason": "Switch to gyroid infill to provide more isotropic strength and better load distribution in all directions, which is beneficial for brackets that may see multi-directional forces."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "top_layers",
+          "newValue": 6,
+          "changeType": "absolute",
+          "reason": "Increase top solid layers from 4 to 6 (1.2 mm at 0.2 mm layer height) to strengthen outer skins and improve resistance to crushing and localized loads on the top surfaces."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "bottom_layers",
+          "newValue": 6,
+          "changeType": "absolute",
+          "reason": "Increase bottom solid layers from 4 to 6 to create a thicker, more rigid base that better handles screw pressure and bending forces at the mounting points."
+        },
+        {
+          "scope": "global",
+          "target": {
+            "objectName": null,
+            "plateIndex": null
+          },
+          "parameter": "fan_speed_percent",
+          "newValue": 40,
+          "changeType": "absolute",
+          "reason": "Reduce PETG part cooling from 70% to 40% to improve interlayer adhesion and overall toughness; high fan speeds can make PETG more brittle, which is undesirable for a safety-critical, load-bearing bracket."
+        }
+      ],
+      "globalRationale": "Thicker perimeters and more solid skin, combined with denser isotropic infill and reduced PETG cooling, will significantly improve the bracket’s structural reliability while keeping the overall changes conservative and easy to print on the existing profile.",
+      "warnings": [
+        "These changes will increase print time and material usage compared to the original profile, but they are appropriate for a safety-critical, overhead-mounted tool holder.",
+        "Mechanical safety cannot be fully guaranteed from slicer settings alone; verify part strength with cautious load testing before placing it above a workspace or near people."
+      ]
+    }
+  }
+}

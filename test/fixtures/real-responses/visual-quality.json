@@ -1,0 +1,396 @@
+{
+  "version": 1,
+  "changes": [
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "layer_height_mm",
+      "newValue": 0.16,
+      "changeType": "absolute",
+      "reason": "Slightly finer layers improve visible wall smoothness and curvature detail on a decorative vase without dramatically increasing print time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_line_count",
+      "newValue": 3,
+      "changeType": "absolute",
+      "reason": "An extra perimeter helps hide infill artifacts and gives a more uniform, solid-looking outer wall for visual parts."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_sequence",
+      "newValue": "outer/inner",
+      "changeType": "absolute",
+      "reason": "Printing the outer wall first prioritizes surface appearance and dimensional accuracy over speed, which suits a decorative vase."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_generator",
+      "newValue": "arachne",
+      "changeType": "absolute",
+      "reason": "Arachne-style walls adapt line widths on curves, improving outer wall smoothness on organic vase shapes."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "precise_outer_wall",
+      "newValue": true,
+      "changeType": "absolute",
+      "reason": "Improves dimensional accuracy and consistency of the visible outer wall at the cost of a small speed reduction."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "outer_wall_line_width",
+      "newValue": 0.38,
+      "changeType": "absolute",
+      "reason": "A slightly narrower outer wall line width increases detail and reduces visible extrusion lines on the surface."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_layers",
+      "newValue": 6,
+      "changeType": "absolute",
+      "reason": "More top solid layers reduce the chance of seeing infill pattern or slight waviness on any flat top surfaces."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_surface_pattern",
+      "newValue": "monotonic",
+      "changeType": "absolute",
+      "reason": "Monotonic top infill produces more even, visually consistent top surfaces compared to grid-like patterns."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_solid_infill_flow_ratio",
+      "newValue": 0.97,
+      "changeType": "absolute",
+      "reason": "Slightly under-driving flow on top solids helps prevent ridges and overfilled shiny lines on the visible top surface."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.wall_outer",
+      "newValue": 45,
+      "changeType": "absolute",
+      "reason": "Slowing the outer wall speed significantly improves surface finish and reduces ringing/ghosting on a decorative part."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.wall_inner",
+      "newValue": 90,
+      "changeType": "absolute",
+      "reason": "Inner walls remain faster than outer walls to keep print time reasonable while still reducing vibration compared to the base profile."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_surface_speed",
+      "newValue": 30,
+      "changeType": "absolute",
+      "reason": "Slower top surface speed improves line placement and smoothness on any visible flat areas."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "nozzle_temp_c",
+      "newValue": 240,
+      "changeType": "absolute",
+      "reason": "A small reduction in PETG nozzle temperature can decrease stringing and surface artifacts while remaining within the recommended range."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "ironing_type",
+      "newValue": "topmost surface",
+      "changeType": "absolute",
+      "reason": "Ironing only the very topmost solid layers enhances their visual smoothness without greatly extending total print time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "ironing_speed",
+      "newValue": 25,
+      "changeType": "absolute",
+      "reason": "Moderate ironing speed balances surface quality with the risk of PETG dragging or smearing."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "ironing_flow",
+      "newValue": 10,
+      "changeType": "absolute",
+      "reason": "Low ironing flow helps level out the top surface without creating new ridges or over-extrusion artifacts."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "ironing_spacing",
+      "newValue": 0.1,
+      "changeType": "absolute",
+      "reason": "Tight ironing line spacing gives a more uniform finish on the topmost surface."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "ironing_pattern",
+      "newValue": "monotonic",
+      "changeType": "absolute",
+      "reason": "A monotonic ironing pattern keeps the topmost surface visually consistent and minimizes directional artifacts."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "seam_position",
+      "newValue": "rear",
+      "changeType": "absolute",
+      "reason": "Moving the seam to the rear concentrates any minor zits or blobs on a less-visible side of the vase."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wipe",
+      "newValue": true,
+      "changeType": "absolute",
+      "reason": "Enabling wiping reduces blobs and zits at the seam, improving wall smoothness."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wipe_distance",
+      "newValue": 5,
+      "changeType": "absolute",
+      "reason": "A short wipe distance is typically enough to clean up the nozzle path at layer changes without adding much time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wipe_speed",
+      "newValue": 20,
+      "changeType": "absolute",
+      "reason": "Moderate wipe speed avoids dragging PETG while still being efficient."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "retract_before_wipe",
+      "newValue": true,
+      "changeType": "absolute",
+      "reason": "Retracting before wiping further reduces the chance of blobs forming on the outer surface during travels."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "outer_wall_acceleration",
+      "newValue": 2000,
+      "changeType": "absolute",
+      "reason": "Lower outer wall acceleration reduces vibration and ringing, which directly improves visible wall quality."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "inner_wall_acceleration",
+      "newValue": 4000,
+      "changeType": "absolute",
+      "reason": "Inner walls use a moderate acceleration to balance print time and reduced vibration transfer to the outer walls."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_surface_acceleration",
+      "newValue": 1500,
+      "changeType": "absolute",
+      "reason": "Lower acceleration on top surfaces helps ensure smooth, even top layers without ripples."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "default_acceleration",
+      "newValue": 5000,
+      "changeType": "absolute",
+      "reason": "A moderate default acceleration keeps overall speed reasonable while limiting print head vibration that can affect surface quality."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "outer_wall_jerk",
+      "newValue": 8,
+      "changeType": "absolute",
+      "reason": "Lower jerk on outer walls smooths direction changes and reduces corner artifacts on the visible shell."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "inner_wall_jerk",
+      "newValue": 10,
+      "changeType": "absolute",
+      "reason": "Slightly higher jerk on inner walls maintains throughput without heavily impacting outer surface quality."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_surface_jerk",
+      "newValue": 6,
+      "changeType": "absolute",
+      "reason": "Reduced jerk on top surfaces minimizes small ripples and inconsistencies in the final top layers."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "default_jerk",
+      "newValue": 10,
+      "changeType": "absolute",
+      "reason": "A moderate default jerk setting helps reduce ringing across the print while not slowing it excessively."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "slow_down_layer_time",
+      "newValue": 12,
+      "changeType": "absolute",
+      "reason": "Ensuring very short layers take at least this long helps PETG cool properly, improving detail on small upper sections of the vase."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "slow_down_min_speed",
+      "newValue": 15,
+      "changeType": "absolute",
+      "reason": "Defines a reasonable minimum print speed when slowing down for short layers to avoid overheating and surface roughness."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "fan_cooling_layer_time",
+      "newValue": 20,
+      "changeType": "absolute",
+      "reason": "Targets cooling to keep each layer from printing too quickly, which helps surface quality near the top of the model."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "elefant_foot_compensation",
+      "newValue": 0.04,
+      "changeType": "absolute",
+      "reason": "Compensates slightly for first-layer squish so the base edge of the vase looks sharper and cleaner."
+    }
+  ],
+  "globalRationale": "Adjusted layer height, perimeter strategy, speeds/accelerations, and top-surface settings to prioritize smooth, consistent walls and clean top surfaces on a decorative PETG vase while keeping print times reasonable. Changes focus on reducing vibration, over-extrusion artifacts, and seam defects without compromising basic print reliability.",
+  "warnings": [
+    "Outer wall and top surface speeds are significantly reduced compared to the stock high-speed profile, so expect noticeably longer print times in exchange for better surface quality.",
+    "Enabling ironing and lowering accelerations/jerk will further increase print time but should yield smoother visible surfaces; you can disable ironing if the extra time is not acceptable.",
+    "The slight nozzle temperature reduction to 240 °C should work well for most Bambu PETG, but if you see under-extrusion or poor layer bonding, consider increasing back toward 245 °C."
+  ]
+}

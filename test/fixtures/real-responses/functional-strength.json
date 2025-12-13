@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "changes": [
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_line_count",
+      "newValue": 4,
+      "changeType": "absolute",
+      "reason": "Increase shell thickness so the bracket’s outer walls carry more of the bending and shear load, improving overall strength and stiffness."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_density_percent",
+      "newValue": 35,
+      "changeType": "absolute",
+      "reason": "Raise internal infill density so the bracket better resists compression and shear under the shelf load without going to a fully solid print."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_pattern",
+      "newValue": "gyroid",
+      "changeType": "absolute",
+      "reason": "Use a more isotropic infill pattern so the bracket has more uniform strength in multiple directions compared to simple grid."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_layers",
+      "newValue": 5,
+      "changeType": "absolute",
+      "reason": "Add one extra solid top layer to increase the thickness of solid skin where stresses may concentrate, improving durability with modest extra print time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "bottom_layers",
+      "newValue": 5,
+      "changeType": "absolute",
+      "reason": "Increase bottom solid thickness so the layer stack at the mounting/bed-contact side is more resistant to cracking and screw-induced stresses."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.wall_outer",
+      "newValue": 80,
+      "changeType": "absolute",
+      "reason": "Slow outer walls for PETG to improve layer adhesion and reduce the risk of weak, under-bonded perimeters on a load-bearing part."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.wall_inner",
+      "newValue": 120,
+      "changeType": "absolute",
+      "reason": "Moderately reduce inner wall speed to balance stronger inter-layer bonding with reasonable print time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.infill",
+      "newValue": 150,
+      "changeType": "absolute",
+      "reason": "Reduce infill speed slightly so the denser gyroid infill bonds better and carries load more reliably without a large time penalty."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.first_layer",
+      "newValue": 40,
+      "changeType": "absolute",
+      "reason": "Slow the first layer to improve adhesion and create a stronger foundation for the bracket under load."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "fan_speed_percent",
+      "newValue": 40,
+      "changeType": "absolute",
+      "reason": "Lower PETG part cooling to improve inter-layer adhesion and reduce brittleness, prioritizing strength over surface finish."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "nozzle_temp_c",
+      "newValue": 250,
+      "changeType": "absolute",
+      "reason": "Nudge nozzle temperature toward the higher end of the PETG range to promote stronger layer bonding for this functional, load-bearing bracket."
+    }
+  ],
+  "globalRationale": "Increased wall thickness and infill strength, while tuning PETG speeds, cooling, and temperature to favor strong layer adhesion for a load-bearing bracket without making the print excessively slow or material-heavy.",
+  "warnings": [
+    "These settings assume the bracket is oriented so that the main load is not trying to peel apart layer lines; if possible, orient it so layers run along the length of the bracket, not across the main bending stress.",
+    "Lower fan speed and higher PETG temperature can increase stringing and gloss; if surface quality degrades too much, slightly raise fan speed or lower temperature while keeping wall count and infill density unchanged."
+  ]
+}

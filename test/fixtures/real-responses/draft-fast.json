@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "changes": [
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "layer_height_mm",
+      "newValue": 0.28,
+      "changeType": "absolute",
+      "reason": "Thicker layers greatly reduce total layer count and print time for a non‑critical fit check, accepting lower surface quality."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "first_layer_height_mm",
+      "newValue": 0.24,
+      "changeType": "absolute",
+      "reason": "Slightly thicker first layer speeds printing while still providing good PETG adhesion on a 0.4 mm nozzle."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "top_layers",
+      "newValue": 2,
+      "changeType": "absolute",
+      "reason": "Fewer solid top layers save time and material; surface quality and strength are not important for a quick fit prototype."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "bottom_layers",
+      "newValue": 2,
+      "changeType": "absolute",
+      "reason": "Reducing bottom solid layers cuts print time and plastic usage while remaining adequate for a small, non‑load‑bearing bracket."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_density_percent",
+      "newValue": 5,
+      "changeType": "absolute",
+      "reason": "Very low infill is sufficient for a dimensional fit test and significantly reduces material and time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_pattern",
+      "newValue": "lightning",
+      "changeType": "absolute",
+      "reason": "Lightning infill minimizes internal toolpaths and material for the fastest possible low‑strength prototype."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.wall_outer",
+      "newValue": 130,
+      "changeType": "absolute",
+      "reason": "Slightly increasing outer wall speed reduces time with minimal risk to dimensional accuracy on a small PETG part."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.wall_inner",
+      "newValue": 170,
+      "changeType": "absolute",
+      "reason": "Higher inner wall speed increases throughput where surface quality is less critical, shortening total print time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.infill",
+      "newValue": 170,
+      "changeType": "absolute",
+      "reason": "Boosting infill speed exploits low infill density to cut print time without affecting the part’s fit."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "nozzle_temp_c",
+      "newValue": 255,
+      "changeType": "absolute",
+      "reason": "Raising PETG nozzle temperature improves flow and layer bonding at the higher speeds and thicker layers used here."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "fan_speed_percent",
+      "newValue": 80,
+      "changeType": "absolute",
+      "reason": "Strong part cooling helps PETG handle thicker, faster layers and overhangs, supporting reliable high‑speed draft printing."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "filament_max_volumetric_speed",
+      "newValue": 20,
+      "changeType": "absolute",
+      "reason": "Allows the slicer to use higher linear speeds while keeping PETG extrusion within a reasonable volumetric flow limit for the X1C."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "skirt_loops",
+      "newValue": 1,
+      "changeType": "absolute",
+      "reason": "Minimizing skirt loops saves a bit of time and filament while still priming the nozzle."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "skirt_height",
+      "newValue": 1,
+      "changeType": "absolute",
+      "reason": "Limiting the skirt to a single layer reduces unnecessary perimeter printing beyond the first layer."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "reduce_infill_retraction",
+      "newValue": true,
+      "changeType": "absolute",
+      "reason": "Fewer retractions in infill regions shorten print time and stringing there does not affect functionality."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "retraction_minimum_travel",
+      "newValue": 3,
+      "changeType": "absolute",
+      "reason": "A higher minimum travel distance before retracting cuts the number of retractions and speeds up non‑critical draft printing."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "slow_down_layer_time",
+      "newValue": 5,
+      "changeType": "absolute",
+      "reason": "Reducing the minimum layer time threshold avoids unnecessary slowdown on this relatively small part while still giving layers some cooling time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "slow_down_min_speed",
+      "newValue": 30,
+      "changeType": "absolute",
+      "reason": "Prevents the slicer from dropping to very low speeds on quick layers, maintaining the overall high‑speed character of the draft print."
+    }
+  ],
+  "globalRationale": "Increase layer thickness and print speeds while cutting infill and solid layers to minimize time and material for a quick PETG fit-check prototype, accepting lower strength and surface quality. Settings stay within reasonable PETG temperature and flow limits for the X1C to avoid major reliability issues.",
+  "warnings": [
+    "These aggressive settings will produce a weaker, rougher part; do not use this bracket for load‑bearing or safety‑critical applications.",
+    "If you notice under‑extrusion, skipped steps, or severe ringing, lower wall and infill speeds (e.g. back toward 140–150 mm/s) or reduce layer height slightly (e.g. 0.24–0.26 mm)."
+  ]
+}

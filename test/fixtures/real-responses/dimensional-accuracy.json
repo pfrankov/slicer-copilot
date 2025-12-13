@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "changes": [
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "layer_height_mm",
+      "newValue": 0.16,
+      "changeType": "absolute",
+      "reason": "Slightly finer layer height improves tooth profile and small-feature dimensional accuracy with a modest increase in print time."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_line_count",
+      "newValue": 3,
+      "changeType": "absolute",
+      "reason": "An extra perimeter increases tooth stiffness and dimensional stability without a large material or time penalty, improving functional strength at the gear surface."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_sequence",
+      "newValue": "outer/inner",
+      "changeType": "absolute",
+      "reason": "Printing the outer wall first gives more consistent external dimensions, which is important for meshing gear teeth."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "speeds.wall_outer",
+      "newValue": 50,
+      "changeType": "absolute",
+      "reason": "Substantially slowing the outer walls reduces ringing and dimensional overshoot, improving the accuracy of gear teeth and mating surfaces in PETG."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "precise_outer_wall",
+      "newValue": true,
+      "changeType": "absolute",
+      "reason": "Enables extra-precise handling of the outer perimeter for better dimensional fidelity on critical features."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "detect_thin_wall",
+      "newValue": true,
+      "changeType": "absolute",
+      "reason": "Ensures narrow gear teeth and fine features are preserved instead of being skipped or merged, improving functional geometry accuracy."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_density_percent",
+      "newValue": 20,
+      "changeType": "absolute",
+      "reason": "Slightly higher infill increases overall stiffness so teeth deflect less under load, improving practical meshing without a big print-time impact."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "elefant_foot_compensation",
+      "newValue": 0.1,
+      "changeType": "absolute",
+      "reason": "A small first-layer XY compensation reduces the ‘elephant foot’ bulge, keeping the gear’s base dimensions closer to CAD for better fit."
+    }
+  ],
+  "globalRationale": "Tweaks focus on slowing and refining the outer geometry, modestly increasing wall count and stiffness, and compensating the first layer so critical gear dimensions print closer to design while keeping changes conservative.",
+  "warnings": [
+    "For very tight tolerances, you may still need to empirically tune XY compensation (holes and contours) for your specific machine and PETG, which is not adjusted here due to the conservative change requirement.",
+    "Nozzle temperature remains at 245°C per your lock; if you later adjust material flow or dimensional calibration, re-check fit on a small test gear first."
+  ]
+}

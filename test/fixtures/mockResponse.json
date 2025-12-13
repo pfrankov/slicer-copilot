@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "changes": [
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "wall_line_count",
+      "newValue": 4,
+      "changeType": "absolute",
+      "reason": "Increase shell thickness so the bracket's outer walls carry more of the bending and shear load, improving overall strength and stiffness."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_density_percent",
+      "newValue": 35,
+      "changeType": "absolute",
+      "reason": "Raise internal infill density so the bracket better resists compression and shear under the shelf load without going to a fully solid print."
+    },
+    {
+      "scope": "global",
+      "target": {
+        "objectName": null,
+        "plateIndex": null
+      },
+      "parameter": "infill_pattern",
+      "newValue": "gyroid",
+      "changeType": "absolute",
+      "reason": "Use a more isotropic infill pattern so the bracket has more uniform strength in multiple directions compared to simple grid."
+    },
+    {
+      "scope": "object",
+      "target": {
+        "objectName": "CalibrationCube",
+        "plateIndex": 0
+      },
+      "parameter": "supports_enabled",
+      "newValue": true,
+      "changeType": "absolute",
+      "reason": "Enable supports for better print quality on overhanging features."
+    }
+  ],
+  "globalRationale": "Increasing wall count and infill density with gyroid pattern improves structural integrity for functional parts while maintaining reasonable print time.",
+  "warnings": [
+    "These changes will increase print time and material usage compared to the original profile."
+  ]
+}
