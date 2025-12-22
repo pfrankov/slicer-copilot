@@ -1,5 +1,7 @@
 # Slicer Copilot
 
+![Demo](https://github.com/user-attachments/assets/5878ea30-bd7d-45ea-9a83-1ee18a6e9b23)
+
 **AI-powered optimization for your Bambu Studio 3D printing projects.**
 
 Slicer Copilot analyzes your `.3mf` project files, understands your goals (like "Maximum Strength" or "Visual Quality"), and uses an LLM to tune your print settings automatically.
