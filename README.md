@@ -28,7 +28,7 @@ You can run the tool directly using `npx` or install it globally.
 
 ```bash
 # Run directly
-npx slicer-copilot optimize my-project.3mf
+npx slicer-copilot optimize my-project.3mf --api-key=sk-
 
 # Or install globally
 npm install -g slicer-copilot
