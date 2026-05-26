@@ -1,0 +1,69 @@
+name: Publish npm
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-npm-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Verify tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          TAG_VERSION="${RELEASE_TAG#v}"
+
+          echo "tag: $RELEASE_TAG"
+          echo "package version: $PKG_VERSION"
+
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "Tag and package.json version mismatch"
+            exit 1
+          fi
+
+      - name: Validate package is publishable
+        run: |
+          node -e "const p=require('./package.json'); if (p.private) { console.error('package.json has private=true'); process.exit(1); }"
+
+      - name: Smoke check package tarball
+        run: npm pack --dry-run
+
+      - name: Publish to npm
+        run: |
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [[ "$PKG_VERSION" == *-* ]]; then
+            npm publish --access public --provenance --tag beta
+          else
+            npm publish --access public --provenance
+          fi

@@ -67,3 +67,10 @@ Purpose: Slicer Copilot loads a Bambu Studio `.3mf`, summarizes printer/filament
 - Printer enclosure state and plate/object layout are omitted in summaries/payloads when metadata lacks them (current Bambu exports do not provide reliable data).
 - Always preserve unknown ZIP entries; only metadata/settings are rewritten.
 - When requirements change (JSON schema, intent fields, parsing rules, safety ranges, coverage scope), update this brief and README.md together.
+
+## Publishing
+
+- npm publishing lives in `.github/workflows/publish-npm.yml` and runs on pushed tags matching `v*`.
+- npm publishing uses Trusted Publisher / GitHub OIDC for package `slicer-copilot`, repository `pfrankov/slicer-copilot`, workflow `publish-npm.yml`; do not add `NPM_TOKEN`/`NODE_AUTH_TOKEN` for normal releases.
+- The pushed tag must match `package.json` version exactly, for example package version `0.1.1` requires tag `v0.1.1`.
+- Before publishing, run `npm test`, `npm run lint`, and `npm pack --dry-run`.
