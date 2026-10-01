@@ -28,10 +28,10 @@ You can run the tool directly using `npx` or install it globally.
 
 ```bash
 # Run directly
-npx slicer-copilot optimize my-project.3mf --api-key=sk-
+npx slicer-copilot-new optimize my-project.3mf --api-key=sk-
 
 # Or install globally
-npm install -g slicer-copilot
+npm install -g slicer-copilot-new
 ```
 
 ### Configuration
@@ -52,7 +52,8 @@ OPENAI_API_KEY=sk-...
 
 ```ini
 OPENAI_BASE_URL=https://api.openai.com/v1
-OPENAI_MODEL=gpt-4o  # Default: gpt-4.1-mini
+OPENAI_MODEL=gpt-6.1-sol  # Default: gpt-6.1-sol
+OPENAI_REASONING_EFFORT=medium  # low | medium | high | none (reasoning-capable models)
 ```
 
 ## Usage
@@ -62,7 +63,7 @@ OPENAI_MODEL=gpt-4o  # Default: gpt-4.1-mini
 Simply run the command on your file. The tool will ask you for your optimization goal.
 
 ```bash
-npx slicer-copilot optimize input.3mf
+npx slicer-copilot-new optimize input.3mf
 ```
 
 ### Dry Run (Safe Mode)
@@ -70,7 +71,7 @@ npx slicer-copilot optimize input.3mf
 Want to see what _would_ change without writing a new file? Use `--dry-run`.
 
 ```bash
-npx slicer-copilot optimize input.3mf --dry-run
+npx slicer-copilot-new optimize input.3mf --dry-run
 ```
 
 ### Automated / Non-Interactive
@@ -78,7 +79,7 @@ npx slicer-copilot optimize input.3mf --dry-run
 For scripts or batch processing, use `--non-interactive` and provide an intent file.
 
 ```bash
-npx slicer-copilot optimize input.3mf \
+npx slicer-copilot-new optimize input.3mf \
   --non-interactive \
   --intent-file intent.json
 ```
@@ -88,7 +89,7 @@ npx slicer-copilot optimize input.3mf \
 Switch the interface and AI reasoning language using `--language`.
 
 ```bash
-npx slicer-copilot optimize input.3mf --language ru
+npx slicer-copilot-new optimize input.3mf --language ru
 ```
 
 **Supported languages:**
@@ -117,7 +118,7 @@ When running interactively, you can choose from the following goals:
 Here is what the tool looks like in action:
 
 ```text
-npx slicer-copilot optimize new-years-ball.3mf --output test-ny.3mf
+npx slicer-copilot-new optimize new-years-ball.3mf --output test-ny.3mf
 ✔ Project loaded successfully
 
 ╭ ★ Slicer Copilot ────╮

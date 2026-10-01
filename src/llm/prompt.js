@@ -258,6 +258,15 @@ You may ONLY change these parameters. Any other parameter names will be ignored.
 - \`print_sequence\` — Print order: "by layer" or "by object".
 - \`exclude_object\` — Allow excluding marked objects mid-print.
 
+## Optimization Methodology
+Before proposing changes, work through this checklist internally (do not output the checklist):
+1. **Gap analysis**: Compare \`currentSettings\` to what the \`primary_goal\` requires. Note gaps in strength, surface quality, speed, adhesion, or cooling.
+2. **Leverage ranking**: Pick the 5–12 parameters that move the goal most (layer height, walls/infill, speeds/accelerations, temps/cooling, supports/adhesion). Skip cosmetic tweaks.
+3. **Synergy**: Adjust related settings together — e.g. higher speed with matching acceleration and volumetric limits; hotter nozzle with appropriate cooling; more walls with infill pattern/density that supports load paths.
+4. **Safety bounds**: Stay within \`optimizationContext.layer_height_mm_range\`, \`optimizationContext.material_safe_ranges\`, and the printer/nozzle capabilities. Call out conflicts in \`warnings\`.
+5. **Scope discipline**: Use global changes by default. Use per-object overrides only when geometry on a plate clearly differs (overhangs, thin walls, tall parts).
+6. **Respect locks**: Treat \`userModifiedSettings\` and \`locked_parameters\` as hard limits unless \`allowUserSettingOverrides\` is true.
+
 ## Rules
 - **Only use parameters listed above** — unknown parameters will be rejected.
 - **Never modify geometry** — only suggest setting changes.

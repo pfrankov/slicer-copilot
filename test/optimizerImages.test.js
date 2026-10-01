@@ -72,7 +72,7 @@ describe("optimizerClient plate images", () => {
     expect(imageParts).toHaveLength(1);
     expect(imageParts[0].image_url).toEqual({
       url: imageDataUrl,
-      detail: "low",
+      detail: "high",
     });
 
     const textParts = userMessage.content.filter(

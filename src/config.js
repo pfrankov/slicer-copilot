@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { DEFAULT_MODEL, DEFAULT_TEMPERATURE } from "./constants.js";
+import { resolveReasoningEffort } from "./llm/modelOptions.js";
 
 /**
  * @typedef {object} SlicerCopilotConfig
@@ -7,6 +8,7 @@ import { DEFAULT_MODEL, DEFAULT_TEMPERATURE } from "./constants.js";
  * @property {string | undefined} baseURL
  * @property {string} model
  * @property {number} temperature
+ * @property {"low" | "medium" | "high" | undefined} reasoningEffort
  * @property {string | undefined} mockResponsePath
  */
 
@@ -18,6 +20,7 @@ import { DEFAULT_MODEL, DEFAULT_TEMPERATURE } from "./constants.js";
  * @param {string} [options.baseURL]
  * @param {string} [options.model]
  * @param {number} [options.temperature]
+ * @param {string} [options.reasoningEffort]
  * @param {string} [options.mockResponsePath]
  * @returns {SlicerCopilotConfig}
  */
@@ -26,6 +29,9 @@ export function loadConfig(options = {}) {
   const baseURL = options.baseURL ?? process.env.OPENAI_BASE_URL ?? undefined;
   const model = options.model ?? process.env.OPENAI_MODEL ?? DEFAULT_MODEL;
   const temperature = options.temperature ?? DEFAULT_TEMPERATURE;
+  const reasoningEffort = resolveReasoningEffort(
+    options.reasoningEffort ?? process.env.OPENAI_REASONING_EFFORT,
+  );
   const mockResponsePath =
     options.mockResponsePath ?? process.env.LLM_MOCK_RESPONSE;
 
@@ -34,6 +40,7 @@ export function loadConfig(options = {}) {
     baseURL,
     model,
     temperature,
+    reasoningEffort,
     mockResponsePath,
   };
 }

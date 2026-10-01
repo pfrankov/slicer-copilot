@@ -13,18 +13,19 @@ Purpose: Slicer Copilot loads a Bambu Studio `.3mf`, summarizes printer/filament
 
 ## Key Modules
 
-- `src/cli.js` — Commander CLI: handles options, loads `.3mf`, intent, LLM call, diff printing, writing output. Supports `--dry-run`, `--non-interactive`, `--intent-file`, `--verbose`, `--mock-response`, `--force` (allows changing user-modified keys; `--override-user-settings` still supported), `--language` (localizes CLI output and requests localized LLM replies), env-based auto-confirm for tests. `--verbose` prints the system prompt and JSON payload. Console output uses `cli-table3` + `chalk` + `boxen` + `ora` with responsive columns, spinners, and colored diffs/JSON.
+- `src/cli.js` — Commander CLI (`slicer-copilot-new`): handles options, loads `.3mf`, intent, LLM call, diff printing, writing output. Supports `--dry-run`, `--non-interactive`, `--intent-file`, `--verbose`, `--mock-response`, `--force` (allows changing user-modified keys; `--override-user-settings` still supported), `--language` (localizes CLI output and requests localized LLM replies), `--model`, `--reasoning-effort` (low/medium/high/none for reasoning-capable models), env-based auto-confirm for tests. `--verbose` prints the system prompt and JSON payload. Console output uses `cli-table3` + `chalk` + `boxen` + `ora` with responsive columns, spinners, and colored diffs/JSON.
 - `src/3mf/parser.js` / `writer.js` — ZIP handling via JSZip. Parser normalizes printer/filament/settings and only includes plates/geometry when present in metadata (no fallback layout because the exports lack usable data). It also surfaces plate preview PNGs (`Metadata/plate_*.png`) for LLM vision input. Writer replaces metadata JSON while preserving other entries, and updates `different_settings_to_system` so Bambu Studio treats changed settings as profile overrides.
 - `src/apply/changes.js` — Applies LLM change set onto the normalized model (global + per-object overrides).
 - `src/llm/prompt.js` — System prompt for LLM with clear rules about geometry, output format, and an **explicit list of available parameters with descriptions** to prevent hallucinated parameter names.
-- `src/llm/requestBuilder.js` — Builds JSON payload combining project data, current settings, and sparse `intentDetails` (no empty/default noise; only meaningful user fields are included). Includes optional plate images.
-- `src/llm/optimizerClient.js` — OpenAI-compatible chat call with JSON response_format, retry on invalid JSON; mock path/env for tests.
+- `src/llm/requestBuilder.js` — Builds JSON payload combining project data, current settings, sparse `intentDetails`, and `optimizationContext` (nozzle/layer-height bounds, material safe ranges). Includes optional plate images.
+- `src/llm/modelOptions.js` — Reasoning-model detection, default reasoning effort, chat completion body builder, plate image detail heuristics, optimization context builder.
+- `src/llm/optimizerClient.js` — OpenAI-compatible chat call with JSON response_format, `reasoning_effort` when supported, retry once on invalid JSON; mock path/env for tests.
 - `src/intent/intent.js` — Collects intent (interactive single-question arrow selector or JSON), normalizes goals/constraints, and prompts for optional free-text notes about the model. Primary goals now include `custom` (no presets; rely on user-provided notes/constraints).
 - `src/utils/summary.js` — Human-readable summary/diff formatting using `cli-table3` + `chalk` + `boxen` + `figures` (responsive tables, syntax-highlighted JSON, styled boxes for warnings/rationale).
 
 ## JSON Protocol
 
-- Request: version, projectSummary (fileName, printer, filaments, base_profile, optional plates/objects with geometry when provided), currentSettings (global process + per-object overrides), `intentDetails` (sparse; omits false/empty defaults), optional plateImages (data URLs).
+- Request: version, projectSummary (fileName, printer, filaments, base_profile, optional plates/objects with geometry when provided), currentSettings (global process + per-object overrides), `intentDetails` (sparse; omits false/default noise), `optimizationContext` (safe bounds for layer height and temps), optional plateImages (data URLs).
 - New flags: `allowUserSettingOverrides` (bool; when false, userModifiedSettings are treated as locked) and `targetLanguage` (ISO-ish code for LLM textual output) ride alongside the request. CLI exposes this via `--force` (or legacy `--override-user-settings`).
 - System prompt instructs LLM: only use documented parameters, no geometry changes, use base profile as baseline, choose change magnitude itself, honor explicit constraints, consider bed type for adhesion/cooling, and use images for support/cooling hints.
 - Response: `changes[]` (scope global/object, parameter, newValue, reason), `globalRationale` (required: brief strategy explanation), optional `warnings[]`. Strict JSON required; retry once on invalid JSON.
@@ -62,7 +63,7 @@ Purpose: Slicer Copilot loads a Bambu Studio `.3mf`, summarizes printer/filament
 
 ## Notes
 
-- Default model `gpt-4.1-mini`; configurable via env/flags.
+- Default model `gpt-6.1-sol` with reasoning effort `medium` (`OPENAI_REASONING_EFFORT` / `--reasoning-effort`); classic models still use temperature. Configurable via env/flags.
 - User-modified settings (`userModifiedSettings`) are skipped by default during apply; pass `--force` to allow changing them (flag is also forwarded to the optimizer; legacy `--override-user-settings` remains).
 - Printer enclosure state and plate/object layout are omitted in summaries/payloads when metadata lacks them (current Bambu exports do not provide reliable data).
 - Always preserve unknown ZIP entries; only metadata/settings are rewritten.
@@ -71,6 +72,6 @@ Purpose: Slicer Copilot loads a Bambu Studio `.3mf`, summarizes printer/filament
 ## Publishing
 
 - npm publishing lives in `.github/workflows/publish-npm.yml` and runs on pushed tags matching `v*`.
-- npm publishing uses Trusted Publisher / GitHub OIDC for package `slicer-copilot`, repository `pfrankov/slicer-copilot`, workflow `publish-npm.yml`; do not add `NPM_TOKEN`/`NODE_AUTH_TOKEN` for normal releases.
+- npm publishing uses Trusted Publisher / GitHub OIDC for package `slicer-copilot-new`, repository `garrylachman/slicer-copilot-new`, workflow `publish-npm.yml`; do not add `NPM_TOKEN`/`NODE_AUTH_TOKEN` for normal releases.
 - The pushed tag must match `package.json` version exactly, for example package version `0.1.1` requires tag `v0.1.1`.
 - Before publishing, run `npm test`, `npm run lint`, and `npm pack --dry-run`.

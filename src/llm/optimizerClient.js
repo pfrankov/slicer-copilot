@@ -3,6 +3,10 @@ import OpenAI from "openai";
 import { SYSTEM_PROMPT } from "./prompt.js";
 import { LLM_RESPONSE_FORMAT } from "./responseSchema.js";
 import {
+  buildChatCompletionBody,
+  plateImageDetailLevel,
+} from "./modelOptions.js";
+import {
   parseLlmResponse,
   InvalidLlmResponseError,
 } from "./responseValidator.js";
@@ -50,20 +54,37 @@ export async function requestOptimization({ payload, config, logger }) {
     buildUserMessage(payload),
   ];
 
-  const content = await callChatCompletion({
+  return callChatCompletionWithRetry({
     client,
     config,
     messages,
     logger,
   });
-  try {
-    return parseLlmResponse(content);
-  } catch (error) {
-    if (error instanceof InvalidLlmResponseError) {
-      logger?.debug?.(`Invalid LLM response; raw content:\n${content}`);
+}
+
+async function callChatCompletionWithRetry({ client, config, messages, logger }) {
+  let lastContent = "";
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    lastContent = await callChatCompletion({
+      client,
+      config,
+      messages,
+      logger,
+    });
+    try {
+      return parseLlmResponse(lastContent);
+    } catch (error) {
+      if (error instanceof InvalidLlmResponseError && attempt === 0) {
+        logger?.debug?.("Invalid LLM response; retrying once...");
+        continue;
+      }
+      if (error instanceof InvalidLlmResponseError) {
+        logger?.debug?.(`Invalid LLM response; raw content:\n${lastContent}`);
+      }
+      throw error;
     }
-    throw error;
   }
+  throw new Error("LLM request failed after retry.");
 }
 
 async function callChatCompletion({ client, config, messages, logger }) {
@@ -82,8 +103,7 @@ async function callChatCompletion({ client, config, messages, logger }) {
   );
   try {
     const completion = await client.chat.completions.create({
-      model: config.model,
-      temperature: config.temperature,
+      ...buildChatCompletionBody(config),
       response_format: LLM_RESPONSE_FORMAT,
       messages,
     });
@@ -135,6 +155,7 @@ function buildUserMessage(payload) {
     },
   ];
 
+  const imageDetail = plateImageDetailLevel(payload.intentDetails);
   (payload.plateImages ?? []).forEach((image) => {
     content.push({
       type: "text",
@@ -142,7 +163,7 @@ function buildUserMessage(payload) {
     });
     content.push({
       type: "image_url",
-      image_url: { url: image.dataUrl, detail: "low" },
+      image_url: { url: image.dataUrl, detail: imageDetail },
     });
   });
 

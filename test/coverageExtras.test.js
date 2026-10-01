@@ -508,7 +508,7 @@ describe("coverage extras", () => {
     await import("../src/cli.js").then(({ runCli }) =>
       runCli([
         "node",
-        "slicer-copilot",
+        "slicer-copilot-new",
         "--verbose",
         "--non-interactive",
         "--mock-response",
@@ -840,6 +840,9 @@ describe("coverage extras", () => {
     expect(payload.targetLanguage).toBe("ru");
     expect(payload.allowUserSettingOverrides).toBe(true);
     expect(payload.userModifiedSettings).toContain("fan_speed_percent");
+    expect(payload.optimizationContext.layer_height_mm_range).toEqual([
+      0.05, 0.32,
+    ]);
   });
 
   it("omits defaults and keeps only provided constraint fields", () => {
@@ -888,7 +891,7 @@ describe("coverage extras", () => {
 
   it("surfaces optimizer errors when JSON is invalid", async () => {
     vi.resetModules();
-    const create = vi.fn().mockResolvedValueOnce({
+    const create = vi.fn().mockResolvedValue({
       choices: [{ message: { content: "not json" } }],
     });
     vi.doMock("openai", () => ({
@@ -917,7 +920,7 @@ describe("coverage extras", () => {
         logger: { debug: () => {} },
       }),
     ).rejects.toThrow(/Invalid JSON from LLM/);
-    expect(create).toHaveBeenCalledTimes(1);
+    expect(create).toHaveBeenCalledTimes(2);
     vi.doUnmock("openai");
     vi.resetModules();
   });

@@ -179,7 +179,7 @@ async function fetchScenario(scenario) {
 async function main() {
   console.log("🚀 Fetching real LLM responses for test fixtures...\n");
   console.log(`   API Base: ${process.env.OPENAI_BASE_URL || "default"}`);
-  console.log(`   Model: ${process.env.OPENAI_MODEL || "gpt-4.1-mini"}`);
+  console.log(`   Model: ${process.env.OPENAI_MODEL || "gpt-6.1-sol"}`);
 
   const results = {};
 

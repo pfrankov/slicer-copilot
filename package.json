@@ -1,10 +1,10 @@
 {
-  "name": "slicer-copilot",
+  "name": "slicer-copilot-new",
   "version": "0.1.0",
   "description": "Slicer Copilot CLI to auto-optimize Bambu Studio .3mf projects using an LLM",
   "type": "module",
   "bin": {
-    "slicer-copilot": "bin/slicer-copilot"
+    "slicer-copilot-new": "bin/slicer-copilot-new"
   },
   "files": [
     "bin",
@@ -14,12 +14,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pfrankov/slicer-copilot.git"
+    "url": "git+https://github.com/garrylachman/slicer-copilot-new.git"
   },
   "bugs": {
-    "url": "https://github.com/pfrankov/slicer-copilot/issues"
+    "url": "https://github.com/garrylachman/slicer-copilot-new/issues"
   },
-  "homepage": "https://github.com/pfrankov/slicer-copilot#readme",
+  "homepage": "https://github.com/garrylachman/slicer-copilot-new#readme",
   "publishConfig": {
     "access": "public"
   },

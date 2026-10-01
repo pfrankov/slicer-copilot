@@ -29,7 +29,7 @@ import {
 import { createI18n } from "./i18n.js";
 
 /**
- * CLI entry point (used by `bin/slicer-copilot` and tests).
+ * CLI entry point (used by `bin/slicer-copilot-new` and tests).
  *
  * @param {string[]} [argv]
  * @returns {Promise<void>}
@@ -37,7 +37,7 @@ import { createI18n } from "./i18n.js";
 export async function runCli(argv = process.argv) {
   const program = new Command();
   program
-    .name("slicer-copilot")
+    .name("slicer-copilot-new")
     .description(
       "Slicer Copilot: optimize Bambu Studio .3mf print settings via LLM",
     )
@@ -47,6 +47,10 @@ export async function runCli(argv = process.argv) {
     .option("--intent-file <file>", "JSON file with user intent")
     .option("--verbose", "Verbose logging", false)
     .option("--model <model>", "LLM model name")
+    .option(
+      "--reasoning-effort <level>",
+      "Reasoning effort for supported models (low, medium, high, none)",
+    )
     .option("--base-url <url>", "OpenAI-compatible base URL")
     .option("--api-key <key>", "API key (or use env)")
     .option("--temperature <number>", "Temperature for LLM", parseFloat)
@@ -117,6 +121,7 @@ async function handleOptimize({ input, options, logger }) {
     baseURL: options.baseUrl,
     model: options.model,
     temperature: options.temperature,
+    reasoningEffort: options.reasoningEffort,
     mockResponsePath: options.mockResponse,
   });
   const language =

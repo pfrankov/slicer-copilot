@@ -40,5 +40,6 @@ export const LAYER_HEIGHT_MIN_MM = 0.05;
 export const LAYER_HEIGHT_NOZZLE_RATIO_MAX = 0.8;
 export const DEFAULT_NOZZLE_DIAMETER_MM = 0.4;
 
-export const DEFAULT_MODEL = "gpt-4.1-mini";
+export const DEFAULT_MODEL = "gpt-6.1-sol";
 export const DEFAULT_TEMPERATURE = 0.3;
+export const DEFAULT_REASONING_EFFORT = "medium";

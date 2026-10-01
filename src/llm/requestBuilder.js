@@ -1,3 +1,6 @@
+import { buildOptimizationContext } from "./modelOptions.js";
+import { normalizeLanguage } from "../i18n.js";
+
 function mapPlateImages(plateImages = []) {
   return plateImages
     .filter((img) => typeof img?.dataUrl === "string")
@@ -110,9 +113,9 @@ export function buildLlmRequestPayload({
     currentSettings: normalized.currentSettings,
     userModifiedSettings: normalized.userModifiedSettings ?? [],
     intentDetails: buildIntentDetails(intent),
+    optimizationContext: buildOptimizationContext(normalized),
     plateImages: mapPlateImages(plateImages),
     allowUserSettingOverrides: allowUserSettingOverrides === true,
     targetLanguage: normalizeLanguage(targetLanguage),
   };
 }
-import { normalizeLanguage } from "../i18n.js";

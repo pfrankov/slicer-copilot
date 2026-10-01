@@ -25,7 +25,7 @@ describe("CLI optimize", () => {
 
     await runCli([
       "node",
-      "slicer-copilot",
+      "slicer-copilot-new",
       "--non-interactive",
       "--output",
       outputPath,
@@ -52,7 +52,7 @@ describe("CLI optimize", () => {
     fs.writeFileSync(mockPath, JSON.stringify(mockResponse));
     await runCli([
       "node",
-      "slicer-copilot",
+      "slicer-copilot-new",
       "--non-interactive",
       "--dry-run",
       "--mock-response",
@@ -62,7 +62,7 @@ describe("CLI optimize", () => {
     ]);
     await runCli([
       "node",
-      "slicer-copilot",
+      "slicer-copilot-new",
       "optimize",
       path.join(tmpDir, "missing.3mf"),
     ]);
@@ -84,7 +84,7 @@ describe("CLI optimize", () => {
     fs.writeFileSync(mockPath, JSON.stringify(mockResponse));
     await runCli([
       "node",
-      "slicer-copilot",
+      "slicer-copilot-new",
       "--intent-file",
       intentPath,
       "--mock-response",
