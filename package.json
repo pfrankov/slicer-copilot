@@ -1,6 +1,6 @@
 {
   "name": "slicer-copilot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Slicer Copilot CLI to auto-optimize Bambu Studio .3mf projects using an LLM",
   "type": "module",
   "bin": {
