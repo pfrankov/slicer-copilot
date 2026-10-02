@@ -2,6 +2,7 @@ import fs from "fs";
 import OpenAI from "openai";
 import { SYSTEM_PROMPT } from "./prompt.js";
 import { LLM_RESPONSE_FORMAT } from "./responseSchema.js";
+import { buildModelOptions } from "./modelOptions.js";
 import {
   parseLlmResponse,
   InvalidLlmResponseError,
@@ -82,8 +83,7 @@ async function callChatCompletion({ client, config, messages, logger }) {
   );
   try {
     const completion = await client.chat.completions.create({
-      model: config.model,
-      temperature: config.temperature,
+      ...buildModelOptions(config),
       response_format: LLM_RESPONSE_FORMAT,
       messages,
     });

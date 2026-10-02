@@ -55,6 +55,25 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 OPENAI_MODEL=gpt-4o  # Default: gpt-4.1-mini
 ```
 
+### Reasoning Models
+
+The default remains `gpt-4.1-mini`. To use a supported GPT-6 model:
+
+```bash
+npx slicer-copilot --model gpt-6.1-sol --reasoning-effort medium optimize input.3mf
+```
+
+You can also set `OPENAI_REASONING_EFFORT` in your environment; the CLI flag takes precedence.
+
+- `gpt-6.1-sol`: `low`, `medium`, `high`, `xhigh`, `max`
+- `gpt-6-sol` and `gpt-6-luna`: the same efforts, plus `none`
+
+For these exact model identifiers, leaving the effort unset uses the API default (`medium`). Slicer Copilot omits `temperature` while reasoning is enabled, including when effort is unset. Explicit `none` is sent as `reasoning_effort: "none"` and keeps the configured temperature (default `0.3`). `gpt-6.1-sol` does not support `none`.
+
+Unsupported model/effort combinations fail before sending a request. Other OpenAI-compatible models keep the existing temperature behavior when no reasoning effort is set; their capabilities are not inferred from their names. Check your provider's model support and pricing before switching.
+
+See OpenAI's [GPT-6 parameter guide](https://developers.openai.com/api/docs/guides/latest-model#update-api-and-model-parameters) and model documentation for [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6 Sol](https://developers.openai.com/api/docs/models/gpt-6-sol), and [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna).
+
 ## Usage
 
 ### Interactive Mode (Default)
@@ -206,6 +225,8 @@ npx slicer-copilot optimize new-years-ball.3mf --output test-ny.3mf
 5. **Saves**: Writes a new `.3mf` file. **Geometry is never touched.**
 
 ## Development
+
+Pull requests run tests, lint, and formatting checks on Node.js 24 in GitHub Actions.
 
 ```bash
 # Install dependencies

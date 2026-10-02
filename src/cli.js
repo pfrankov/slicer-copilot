@@ -50,6 +50,10 @@ export async function runCli(argv = process.argv) {
     .option("--base-url <url>", "OpenAI-compatible base URL")
     .option("--api-key <key>", "API key (or use env)")
     .option("--temperature <number>", "Temperature for LLM", parseFloat)
+    .option(
+      "--reasoning-effort <effort>",
+      "Reasoning effort for supported GPT-6 models (none, low, medium, high, xhigh, max)",
+    )
     .option("--mock-response <file>", "Use mock LLM JSON response (for tests)")
     .option(
       "-f, --force",
@@ -117,6 +121,7 @@ async function handleOptimize({ input, options, logger }) {
     baseURL: options.baseUrl,
     model: options.model,
     temperature: options.temperature,
+    reasoningEffort: options.reasoningEffort,
     mockResponsePath: options.mockResponse,
   });
   const language =
