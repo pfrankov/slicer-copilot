@@ -19,6 +19,7 @@ Purpose: Slicer Copilot loads a Bambu Studio `.3mf`, summarizes printer/filament
 - `src/llm/prompt.js` — System prompt for LLM with clear rules about geometry, output format, and an **explicit list of available parameters with descriptions** to prevent hallucinated parameter names.
 - `src/llm/requestBuilder.js` — Builds JSON payload combining project data, current settings, and sparse `intentDetails` (no empty/default noise; only meaningful user fields are included). Includes optional plate images.
 - `src/llm/optimizerClient.js` — OpenAI-compatible chat call with JSON response_format, retry on invalid JSON; mock path/env for tests.
+- `src/llm/modelOptions.js` — Exact-model Chat Completions parameter rules for `gpt-6.1-sol`, `gpt-6-sol`, and `gpt-6-luna`. Optional `--reasoning-effort` / `OPENAI_REASONING_EFFORT` accepts each model's documented values; unsupported combinations fail before HTTP. Omitted effort leaves the API default (medium) and omits temperature. Explicit `none` is only supported on Sol/Luna and preserves temperature. Other model names retain the existing temperature-only behavior without capability guessing.
 - `src/intent/intent.js` — Collects intent (interactive single-question arrow selector or JSON), normalizes goals/constraints, and prompts for optional free-text notes about the model. Primary goals now include `custom` (no presets; rely on user-provided notes/constraints).
 - `src/utils/summary.js` — Human-readable summary/diff formatting using `cli-table3` + `chalk` + `boxen` + `figures` (responsive tables, syntax-highlighted JSON, styled boxes for warnings/rationale).
 
@@ -56,6 +57,8 @@ Purpose: Slicer Copilot loads a Bambu Studio `.3mf`, summarizes printer/filament
 
 ## Testing & Coverage
 
+- Pull request CI (`.github/workflows/ci.yml`) runs tests, lint, and formatting checks on Node.js 24 with read-only repository permissions. Publishing remains in the separate tag-triggered workflow.
+
 - Vitest with 100% thresholds; CLI, parser, writer, HTTP client, and config excluded per `vitest.config.js` for focused coverage.
 - Fixtures: `test/fixtures/sample3mf.js` builds a mock `.3mf`; `test/fixtures/mockResponse.json` simulates LLM output.
 - Mock LLM via `--mock-response` or env `LLM_MOCK_RESPONSE`. Auto-confirm/env knobs help avoid interactive prompts in tests.
@@ -63,6 +66,7 @@ Purpose: Slicer Copilot loads a Bambu Studio `.3mf`, summarizes printer/filament
 ## Notes
 
 - Default model `gpt-4.1-mini`; configurable via env/flags.
+- Model compatibility tests include a localhost HTTP server and the real OpenAI SDK; do not use live API credentials or printers for tests.
 - User-modified settings (`userModifiedSettings`) are skipped by default during apply; pass `--force` to allow changing them (flag is also forwarded to the optimizer; legacy `--override-user-settings` remains).
 - Printer enclosure state and plate/object layout are omitted in summaries/payloads when metadata lacks them (current Bambu exports do not provide reliable data).
 - Always preserve unknown ZIP entries; only metadata/settings are rewritten.
